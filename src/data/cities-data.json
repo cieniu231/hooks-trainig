@@ -1,0 +1,20 @@
+[
+  {
+    "id": "a1",
+    "title": "Paris",
+    "rating": 5,
+    "color": "lightblue"
+  },
+  {
+    "id": "a2",
+    "title": "Madryt",
+    "rating": 4,
+    "color": "yellow"
+  },
+  {
+    "id": "a3",
+    "title": "Amsterdam",
+    "rating": 5,
+    "color": "orange"
+  }
+]

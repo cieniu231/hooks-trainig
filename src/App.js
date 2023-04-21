@@ -1,25 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
+import cityData from "./data/cities-data.json";
+import CityList from "./components/citylist";
+import AddCityForm from "./components/addcityform";
+import { v4 } from "uuid";
+
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [cities, setCities] = useState(cityData);
+    return (
+        <>
+            <AddCityForm
+                onNewColor={(title, color) => {
+                const newCities = [
+                    ...cities,
+                    {
+                        id: v4(),
+                        rating: 0,
+                        title,
+                        color
+                    }
+                ];
+                setCities(newCities);
+            }}
+            />
+            <CityList
+                cities={cities}
+                onRateCity={(id, rating) => {
+                const newCities = cities.map(city =>
+                    city.id === id ? { ...city, rating } : city
+                );
+                setCities(newCities);
+            }}
+                onRemoveCity={ id => {
+                const newCities = cities.filter(city => city.id !== id);
+                setCities(newCities);
+            }}
+            />
+        </>
+    );
 }
 
 export default App;
