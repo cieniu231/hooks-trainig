@@ -1,13 +1,15 @@
 import React from "react";
 import { useInput } from "./hooks";
+import {useCities} from "./city-hooks";
 
 
-export default function AddCityForm({ onNewColor = f => f }) {
+export default function AddCityForm() {
     const [titleProps, resetTitle] = useInput("");
     const [colorProps, resetColor] = useInput("#000000");
+    const { addCity } = useCities();
     const submit = e => {
         e.preventDefault();
-        onNewColor(titleProps.value,colorProps.value);
+        addCity(titleProps.value,colorProps.value);
         resetTitle();
         resetColor();
     };
